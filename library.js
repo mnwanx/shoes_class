@@ -15,7 +15,30 @@ let model;
 
 })();
 
+
+const getDeviceType = () => {
+  const ua = navigator.userAgent;
+
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+    return "tablet";
+  }
+  if (
+    /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+      ua
+    )
+  ) {
+    console.log("mobile");
+    document.querySelector("#target_img") . width = 150;
+    return;
+  }
+  console.log("desktop");
+  document.querySelector("#target_img") . width = 350;
+  return;
+};
+
+
 async function set_img() {
+  getDeviceType();
   document.querySelector("#predicted_type") . innerHTML = "";
   document.querySelector("html").style.background_image = URL.createObjectURL(document.querySelector("#get_img").files[0]);
   document.querySelector("#target_img").src = URL.createObjectURL(document.querySelector("#get_img").files[0]);
@@ -41,8 +64,8 @@ function predict_shoes() {
 }
 
 function plot_chart(scores) {
-  document.querySelector("#myChart") . height = 600;
-  document.querySelector("#myChart") . width = 600;
+  document.querySelector("#myChart") . height = 300;
+  document.querySelector("#myChart") . width = 300;
 
   // const labels = Utils.months({count: 7});
 const data = {
@@ -78,7 +101,7 @@ const data = {
   data: data,
   options: {
     responsive: true,
-  // maintainAspectRatio: false,
+  maintainAspectRatio: false,
     indexAxis: 'y',
     scales: {
         x: {
