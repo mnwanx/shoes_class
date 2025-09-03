@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Core TF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <link rel="stylesheet", href="style.css"/>
+  <link rel="icon" type="image/x-icon" href="https://media.istockphoto.com/id/1221345724/vector/red-sneakers-vector-illustration-realistic-gym-shoes-color-vector-illustration-for-your.jpg?s=612x612&w=0&k=20&c=Rwb7FsMJfbA2Dr98Nw4e7CYomha9CHsK6N0F9ZmdUEo=">
+  <title>
+    Shoes Classifier A.I.
+  </title>
 </head>
 <body>
   <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
@@ -13,10 +18,15 @@
   <h1>Shoes Classifier A.I.</h1>
   <text id="loading_status">⏳ Please wait . . . </text>
   <br>
-<img src="" width="400" id="target_img"/>
+  </center>
+  <div id="result_figure">
+<img width="400" id="target_img" />
+<canvas id="myChart" width="0" height="0"></canvas>
+</div>
+<center>
 <br>
-<input type="file" id="get_img" onchange="set_img()"></input>
-<button onclick="predict_shoes()">Predict</button>
+<input type="file" id="get_img" onchange="set_img()" disabled></input>
+<button onclick="predict_shoes()" disabled>Predict</button>
 <h2 id="predicted_type"></h2>
 </center>
 </body>
