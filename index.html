@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Core TF.js -->
+</head>
+<body>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@latest/dist/tf-tflite.min.js"></script>
+<script src="library.js"></script>
+<center>
+  <h1>Shoes Classifier A.I.</h1>
+  <text id="loading_status">⏳ Please wait . . . </text>
+  <br>
+<img src="" width="400" id="target_img"/>
+<br>
+<input type="file" id="get_img" onchange="set_img()"></input>
+<button onclick="predict_shoes()">Predict</button>
+<h2 id="predicted_type"></h2>
+</center>
+</body>
+</html>
