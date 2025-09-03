@@ -3,7 +3,7 @@
 
 ## Live Project
 ![](/live%20project.png)
-- [Live Project: ```Shoe Class```](https://mnwanx.github.io/shoe_class)
+- [Live Project: ```Shoe Class```](https://mnwanx.github.io/shoes_class)
 
 
 ## Developer
