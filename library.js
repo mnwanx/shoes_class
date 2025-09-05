@@ -1,20 +1,42 @@
 classes = ["Boots", "Flip Flops", "Loafers", "Sandals", "Sneakers", "Soccer Shoes"];
 var output;
 let model;
+let model_loaded = false;
 (async () => {
   // document.querySelector("#loading_status").innerHTML = "⏳ Please wait . . . ";
   try {
     model = await tflite.loadTFLiteModel("shoes_lite.tflite");
+    model_loaded = true;
+    await clearInterval(run_spinner);
     document.querySelector("#loading_status").innerHTML = "✅ Model is ready";
     document.querySelector("#get_img").disabled = false;
     
   } catch (e)  {
+    model_loaded = true;
+    clearInterval(run_spinner);
     document.querySelector("#loading_status").innerHTML = "❌ Can't load model";
     console.log("❌ Can't load model");
   }
+  
 
-})();
+}) ();
 
+
+async function loading_animation()  {
+
+  let spinner = "⣾⣽⣻⢿⡿⣟⣯⣷";
+  for (i = 0; i < spinner.length; i ++)  {
+      if (model_loaded) {
+        break;
+      }
+      document.querySelector("#loading_status").innerHTML = "⏳ Please wait " + spinner[i];
+      await new Promise(r => setTimeout(r, 150));
+ 
+    
+  }
+}
+
+var run_spinner = setInterval(loading_animation, 1000);
 
 const getDeviceType = () => {
   const ua = navigator.userAgent;
@@ -60,7 +82,9 @@ function predict_shoes() {
   console.log(predicted);
   document.querySelector("#target_img").removeAttribute("height");
   document.querySelector("#predicted_type") . innerHTML = "Shoe Type: " + predicted + "<br>Confirmation: " + (Math.max(...output.dataSync()) * 100).toFixed(2) + "%";
-  plot_chart([...output.dataSync()]);
+  chart_value = [];
+  output.dataSync().forEach(num => chart_value.push(num * 100));
+  plot_chart(chart_value);
 }
 
 function plot_chart(scores) {
@@ -100,6 +124,9 @@ const data = {
   type: 'horizontalBar',
   data: data,
   options: {
+    legend:{
+    display: false
+},
     responsive: true,
   maintainAspectRatio: false,
     indexAxis: 'y',
